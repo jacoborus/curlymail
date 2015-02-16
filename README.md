@@ -1,5 +1,6 @@
-curlyMail
-=========
+![curlyMail](https://raw.githubusercontent.com/jacoborus/curlymail/master/brand/logo.png 'curlyMail logo')
+==========================================================================================================
+
 
 Lightweight email server with mustache templates support for messages.
 
@@ -80,6 +81,7 @@ addTemplate( key, template )
 
 Add or overwrite a message template.
 Curlymail use Hogan.js for template rendering.
+
 **Parameters:**
 - **key** *String*: template keyname
 - **template** *Object*: mail template
@@ -87,16 +89,16 @@ Curlymail use Hogan.js for template rendering.
 Example:
 ```js
 curlymail.addTemplate( 'welcomeMail', {
-from: "{{appname}}",
-to: "{{username}} <{{email}}>",
-cc: "aperson@domain.com, otherperson@domain.com",
-bcc: "hideperson@domain.com",
-subject: "testing emailjs",
-html:    "<html>You have <strong>{{messages.length}} messages</strong></html>",
-text:    "You have {{messages.length}} messages",
-attachments: [
-{path:"./file.zip", name:"renamed.zip"}
-]
+    from: "{{appname}}",
+    to: "{{username}} <{{email}}>",
+    cc: "aperson@domain.com, otherperson@domain.com",
+    bcc: "hideperson@domain.com",
+    subject: "testing emailjs",
+    html:    "<html>You have <strong>{{messages.length}} messages</strong></html>",
+    text:    "You have {{messages.length}} messages",
+    attachments: [
+        {path:"./file.zip", name:"renamed.zip"}
+    ]
 });
 ```
 
@@ -105,6 +107,7 @@ addAccount( key, data )
 ------------------------------------------------------------
 
 Add an email account and connect it to its SMTP server
+
 **Parameters:**
 - **key** *String*: keyname
 - **data** *Object*: account credentials
@@ -123,10 +126,10 @@ Connection options:
 Example:
 ```js
 curlymail.addAccount( 'main', {
-user: 'username@domain.com',
-password: 'PA55W0RD',
-host: 'smtp.gmail.com',
-ssl: true
+    user: 'username@domain.com',
+    password: 'PA55W0RD',
+    host: 'smtp.gmail.com',
+    ssl: true
 });
 ```
 
@@ -135,6 +138,7 @@ send( account, template, data, callback )
 ------------------------------------------------------------
 
 Send message from a mail account
+
 **Parameters:**
 - **account** *String*: account key
 - **template** *String|Object*: template key or template object
@@ -144,7 +148,7 @@ Send message from a mail account
 Example:
 ```js
 curlymail.send( 'mainAccount', 'welcomeMail', {}, function (err) {
-console.log( err || msg );
+    console.log( err || msg );
 });
 ```
 
