@@ -1,5 +1,5 @@
-![curlyMail](https://raw.githubusercontent.com/jacoborus/curlymail/master/brand/logo.png 'curlyMail logo')
-==========================================================================================================
+![curlyMail](https://raw.githubusercontent.com/jacoborus/curlymail/master/brand/curlymail.png 'curlyMail logo')
+===============================================================================================================
 
 
 Lightweight email server with mustache templates support for messages.
@@ -67,8 +67,8 @@ curlymail.send( 'main', 'weekly', data, function (err, msg) {
 });
 ```
 
-curlymail API
-============
+API
+---
 
 
 - [addTemplate](#addTemplate)
@@ -76,8 +76,7 @@ curlymail API
 - [send](#send)
 
 <a name="addTemplate"></a>
-addTemplate( key, template )
-------------------------------------------------------------
+### addTemplate( key, template )
 
 Add or overwrite a message template.
 Curlymail use Hogan.js for template rendering.
@@ -103,8 +102,7 @@ curlymail.addTemplate( 'welcomeMail', {
 ```
 
 <a name="addAccount"></a>
-addAccount( key, data )
-------------------------------------------------------------
+### addAccount( key, data )
 
 Add an email account and connect it to its SMTP server
 
@@ -134,8 +132,7 @@ curlymail.addAccount( 'main', {
 ```
 
 <a name="send"></a>
-send( account, template, data, callback )
-------------------------------------------------------------
+### send( account, template, data, callback )
 
 Send message from a mail account
 

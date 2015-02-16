@@ -1,5 +1,5 @@
-curlyMail
-=========
+![curlyMail](https://raw.githubusercontent.com/jacoborus/curlymail/master/brand/curlymail.png 'curlyMail logo')
+===============================================================================================================
 
 Lightweight email server with mustache templates support for messages.
 
