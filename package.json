@@ -1,0 +1,33 @@
+{
+  "name": "curlymail",
+  "version": "0.1.0",
+  "description": "Lightweight email server with mustache templates support for messages.",
+  "main": "curlymail.js",
+  "scripts": {
+    "demo": "node ./demo/demo.js",
+    "build-docs": "node ./docs/createdocs.js && cat ./docs/readme.md ./docs/api.md ./docs/footer.md > ./README.md",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jacoborus/curlymail.git"
+  },
+  "keywords": [
+    "email",
+    "templates",
+    "SMTP"
+  ],
+  "author": "Jacobo Tabernero - github.com/jacoborus <jacobo@xarope.eu>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jacoborus/curlymail/issues"
+  },
+  "homepage": "https://github.com/jacoborus/curlymail",
+  "dependencies": {
+    "emailjs": "^0.3.12",
+    "hogan.js": "^3.0.2"
+  },
+  "devDependencies": {
+    "updox": "0.0.5"
+  }
+}

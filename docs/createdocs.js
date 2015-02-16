@@ -1,0 +1,1 @@
+require('updox')('./curlymail.js', {dest: './docs', destname: 'api' });

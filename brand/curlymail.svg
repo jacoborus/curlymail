@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   width="400"
+   height="240"
+   id="svg2"
+   inkscape:version="0.91 r"
+   sodipodi:docname="curlymail.svg">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1261"
+     inkscape:window-height="704"
+     id="namedview20"
+     showgrid="false"
+     inkscape:zoom="1"
+     inkscape:cx="202.93926"
+     inkscape:cy="120.88878"
+     inkscape:window-x="135"
+     inkscape:window-y="204"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" />
+  <defs
+     id="defs4" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(0,-812.36218)"
+     id="layer1">
+    <g
+       transform="matrix(0.45350609,0,0,0.45350609,-155.61365,643.91542)"
+       id="text2985"
+       style="font-size:146.09892273px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans" />
+  </g>
+  <rect
+     style="opacity:1;fill:#cdd5c3;fill-opacity:1;stroke:none;stroke-width:3;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     id="rect4154"
+     width="400"
+     height="240"
+     x="0"
+     y="0" />
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:45px;line-height:125%;font-family:Overlock;-inkscape-font-specification:'Overlock Heavy';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#483e37;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     x="200.01195"
+     y="131.52"
+     id="text4148"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan4150"
+       x="200.01195"
+       y="131.52"
+       dx="0 -7.8175898 0 0 0 0 0 0 0 0 0 0 0 0 -6.514658">{{ <tspan
+   style="font-style:italic;font-variant:normal;font-weight:900;font-stretch:normal;font-family:Overlock;-inkscape-font-specification:'Overlock Heavy Italic';fill:#483e37;fill-opacity:1"
+   id="tspan4152"
+   dx="-3 0 0 0 0 0 -1">curlyMail</tspan> }}</tspan></text>
+</svg>
