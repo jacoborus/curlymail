@@ -36,6 +36,8 @@ var getCompiledArr = function (arr) {
 var Template = function (template) {
 	if (template.attachments) {
 		this.attachments = getCompiledArr( template.attachments );
+	} else {
+		this.attachments = [];
 	}
 	delete template.attachments;
 	this.src = template;
