@@ -85,9 +85,11 @@ Template.prototype.render = function (data, remitent) {
 		delete msg.html;
 	}
 	// add attachments from data _attachments
-	data._attachments.forEach( function (att) {
-		msg.attachment.push( att );
-	});
+	if (data._attachments) {
+		data._attachments.forEach( function (att) {
+			msg.attachment.push( att );
+		});
+	}
 	return msg;
 };
 
