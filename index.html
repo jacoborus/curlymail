@@ -1,1 +1,230 @@
-curlymail
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>curlymail - Lightweight email server with mustache templates support for messages</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="css/prism.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800,600,700' rel='stylesheet' type='text/css'>
+
+    <!--[if lt IE 9]>
+        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <script>window.html5 || document.write('<script src="js/vendor/html5shiv.js"><\/script>')</script>
+    <![endif]-->
+</head>
+<body><div class="container">
+<h1 id="title"><img src="curlymail-logo.png" alt="curlymail logo" title="curlymail logo"></h1>
+
+<p class="subtitle">Lightweight email server with mustache templates support for messages</p>
+
+<div class="githubs">
+    <a class="github-button" href="https://github.com/jacoborus/curlymail" data-icon="octicon-star" data-count-href="/jacoborus/curlymail/stargazers" data-count-api="/repos/jacoborus/curlymail#stargazers_count">Star</a>
+    <a class="github-button" href="https://github.com/jacoborus/curlymail/fork" data-icon="octicon-git-branch" data-count-href="/jacoborus/curlymail/network" data-count-api="/repos/jacoborus/curlymail#forks_count">Fork</a>
+    <a class="github-button" href="https://github.com/jacoborus">Follow @jacoborus</a>
+</div>
+
+<h2 id="example">Example:</h2>
+
+
+
+<pre class="pretty"><code class="language-javascript">var curlymail = require('curlymail');
+
+// add a email account and connect it to its SMTP server</span>
+curlymail.addAccount( 'main', {
+    user: 'username@domain.com',
+    password: 'PA55W0RD'
+});
+
+// add an message template with mustaches
+curlymail.addTemplate('weekly', {
+    from:    "{{appname}}",
+    to:      "{{username}} &lt;{{email}}&gt;",
+    subject: "Testing curlyMail",
+    html:    "&lt;html&gt;{{filename}} is ready for download&lt;/html&gt;",
+    attachments: [
+        {path:"path/to/photo.jpg", name:"renames.jpg"}
+   ]
+});
+
+// data to render the template
+var data = {
+    username: 'Mr. Code',
+    email: 'curlymail@domain.com',
+    appname: 'curlymail co.',
+    filename: 'Timetable',
+    // _attachments in render data will be added to message
+    // without being rendering
+    _attachments: [
+        {path:"path/to/file.zip", name:"timetable.zip"}
+   ]
+};
+
+curlymail.send( 'main', 'weekly', data, function(err, msg) {
+    console.log( err || msg );
+});</code></pre>
+
+
+
+<h2 id="installation">Installation</h2>
+
+
+
+<pre class="pretty"><code class="language-sh">npm install curlymail</code></pre>
+
+
+
+<h2 id="demo">Demo</h2>
+
+<p>Copy <code>demo/accountSample.json</code> in <code>demo/account.json</code> and add your mail account config to the new file. Then run:</p>
+
+
+
+<pre class="pretty"><code class="language-sh">npm run demo</code></pre>
+
+<h2 id="api">API</h2>
+
+<ul>
+<li><a href="#addTemplate">addTemplate</a></li>
+<li><a href="#addAccount">addAccount</a></li>
+<li><a href="#send">send</a></li>
+</ul>
+
+<p><a></a></p>
+
+
+
+<h3 id="addtemplate-key-template">addTemplate( key, template )</h3>
+
+<p>Add or overwrite a message template. <br>
+Curlymail use Hogan.js for template rendering.</p>
+
+<p><strong>Parameters:</strong> <br>
+- <strong>key</strong> <em>String</em>: template keyname <br>
+- <strong>template</strong> <em>Object</em>: mail template</p>
+
+<p>Example:</p>
+
+
+
+<pre><code class="language-javascript">curlymail.addTemplate( 'welcomeMail', {
+    from: "{{appname}}",
+    to: "{{username}} &lt;{{email}}&gt;",
+    cc: "aperson@domain.com, otherperson@domain.com",
+    bcc: "hideperson@domain.com",
+    subject: "testing emailjs",
+    html:    "&lt;html&gt;You have {{messages.length}} messages&lt;/html&gt;",
+    text:    "You have {{messages.length}} messages",
+    attachments: [
+        {path:"./file.zip", name:"renamed.zip"}
+    ]
+});</code></pre>
+
+<p><a></a></p>
+
+
+
+<h3 id="addaccount-key-data">addAccount( key, data )</h3>
+
+<p>Add an email account and connect it to its SMTP server</p>
+
+<p><strong>Parameters:</strong> <br>
+- <strong>key</strong> <em>String</em>: keyname <br>
+- <strong>data</strong> <em>Object</em>: account credentials</p>
+
+<p>Connection options:</p>
+
+<ul>
+<li>user: username for logging into smtp</li>
+<li>password: password for logging into smtp</li>
+<li>host: smtp host</li>
+<li>port: smtp port (if null a standard port number will be used)</li>
+<li>ssl: boolean or object {key, ca, cert} (if true or object, ssl connection will be made)</li>
+<li>tls: boolean or object (if true or object, starttls will be initiated)</li>
+<li>timeout: max number of milliseconds to wait for smtp responses (defaults to 5000)</li>
+<li>domain: domain to greet smtp with (defaults to os.hostname)</li>
+</ul>
+
+<p>Example:</p>
+
+
+
+<pre class="prettyprint"><code class="language-javascript hljs ">curlymail.addAccount( <span class="hljs-string">'main'</span>, {
+    user: <span class="hljs-string">'username@domain.com'</span>,
+    password: <span class="hljs-string">'PA55W0RD'</span>,
+    host: <span class="hljs-string">'smtp.gmail.com'</span>,
+    ssl: <span class="hljs-literal">true</span>
+});</code></pre>
+
+<p><a></a></p>
+
+
+
+<h3 id="send-account-template-data-callback">send( account, template, data, callback )</h3>
+
+<p>Send message from a mail account</p>
+
+<p><strong>Parameters:</strong> <br>
+- <strong>account</strong> <em>String</em>: account key <br>
+- <strong>template</strong> <em>String|Object</em>: template key or template object <br>
+- <strong>data</strong> <em>Object</em>: data for template rendering <br>
+- <strong>callback</strong> <em>Function</em>: Signature: err, message</p>
+
+<p>Example:</p>
+
+
+
+<pre><code class="language-javascript">curlymail.send( 'mainAccount', 'welcomeMail', {}, function (err) {
+    console.log( err || msg );
+});</code></pre>
+
+<p>Note: <code>_attachments</code> field in data object will be added to message</p>
+
+
+
+<h2 id="template-rendering">Template rendering</h2>
+
+<p>See <strong><a href="https://mustache.github.io/mustache.5.html">mustache</a></strong></p>
+
+
+
+<h2 id="email-server-connection-and-attachments-options">Email server connection and attachments options</h2>
+
+<p>See <strong><a href="https://github.com/eleith/emailjs#emailserverconnectoptions">emailjs</a></strong></p>
+
+
+
+<h2 id="build-docs">Build docs</h2>
+
+
+
+<pre class="pretty"><code class="language-sh">npm run build-docs</code></pre>
+
+
+
+<h2 id="title-1"><br><br></h2>
+
+<p>© 2015 Jacobo Tabernero - <a href="https://github.com/jacoborus">jacoborus</a></p>
+
+<p>Released under <a href="https://raw.github.com/jacoborus/curlymail/master/LICENSE">MIT License</a></p></div>
+<script src="js/main.js"></script>
+
+<script src="js/vendor/prism.js"></script>
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+</script>
+
+<!-- Place this tag right after the last button or just before your close body tag. -->
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+</body>
+</html>

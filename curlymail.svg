@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg2"
+   height="240"
+   width="400"
+   version="1.1">
+  <defs
+     id="defs4" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     transform="translate(0,-812.36218)">
+    <g
+       style="font-size:146.09892273px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       id="text2985"
+       transform="matrix(0.45350609,0,0,0.45350609,-155.61365,643.91542)" />
+  </g>
+  <rect
+     y="0"
+     x="0"
+     height="240"
+     width="400"
+     id="rect4154"
+     style="opacity:1;fill:#cdd5c3;fill-opacity:1;stroke:none;stroke-width:3;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+  <text
+     id="text4148"
+     y="131.52"
+     x="200.01195"
+     style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:40px;line-height:125%;font-family:Overlock;-inkscape-font-specification:'Overlock Heavy';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#483e37;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+     xml:space="preserve"><tspan
+       dx="0 -7.8175898 0 0 0 0 0 0 0 0 0 0 0 0 -6.514658"
+       y="131.52"
+       x="200.01195"
+       id="tspan4150">{{ <tspan
+   dx="-3 0 0 0 0 0 -1"
+   id="tspan4152"
+   style="font-style:italic;font-variant:normal;font-weight:900;font-stretch:normal;font-family:Overlock;-inkscape-font-specification:'Overlock Heavy Italic';fill:#483e37;fill-opacity:1;font-size:40px;">curlyMail</tspan> }}</tspan></text>
+</svg>
