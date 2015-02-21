@@ -1,34 +1,13 @@
 ![curlyMail](https://raw.githubusercontent.com/jacoborus/curlymail/master/brand/curlymail.png 'curlyMail logo')
 ===============================================================================================================
 
+Lightweight SMTP email server with mustache templates support for messages, it's built on top of [Hogan.js](http://twitter.github.io/hogan.js/) and [Emailjs](https://github.com/eleith/emailjs), and runs on Node.js
 
-Lightweight email server with mustache templates support for messages.
-
-Rendering engine: **[Hogan.js](http://twitter.github.io/hogan.js/)**
-
-Email driver: **[emailjs](https://github.com/eleith/emailjs#emailserverconnectoptions)**
+[curlymail.micronube.com](http://curlymail.micronube.com)
 
 
-Installation
-------------
-
-```sh
-npm install curlymail
-```
-
-
-Demo
-----
-
-Copy `demo/accountSample.json` in `demo/account.json` and add your mail account config to the new file. Then run:
-
-```sh
-npm run demo
-```
-
-
-Example:
---------
+Usage example:
+--------------
 
 ```js
 var curlymail = require('curlymail');
@@ -39,7 +18,7 @@ curlymail.addAccount( 'main', {
     password: 'PA55W0RD'
 });
 
-// add an message template with mustaches
+// add a message template with mustaches
 curlymail.addTemplate('weekly', {
     from:    "{{appname}}",
     to:      "{{username}} <{{email}}>",
@@ -62,13 +41,33 @@ var data = {
    ]
 };
 
+// send a message
 curlymail.send( 'main', 'weekly', data, function (err, msg) {
     console.log( err || msg );
 });
 ```
 
-API
----
+
+Installation
+------------
+
+```sh
+npm install curlymail
+```
+
+
+Demo
+----
+
+Copy `demo/accountSample.json` in `demo/account.json` and add your mail account config to the new file. Then run:
+
+```sh
+npm run demo
+```
+
+
+curlymail API
+============
 
 
 - [addTemplate](#addTemplate)
@@ -76,25 +75,27 @@ API
 - [send](#send)
 
 <a name="addTemplate"></a>
-### addTemplate( key, template )
+addTemplate( key, template )
+------------------------------------------------------------
 
 Add or overwrite a message template.
-Curlymail use Hogan.js for template rendering.
 
 **Parameters:**
 - **key** *String*: template keyname
 - **template** *Object*: mail template
 
+Curlymail use Hogan.js for template rendering. Uses the [same headers Emailjs](https://www.npmjs.com/package/emailjs#message), but this adds the html message properly as an attached document and will generate text message from HTML if text not passed.
+
 Example:
 ```js
 curlymail.addTemplate( 'welcomeMail', {
-    from: "{{appname}}",
-    to: "{{username}} <{{email}}>",
+    from: "{{appname}}", // required
+    to: "{{username}} <{{email}}>", // required
     cc: "aperson@domain.com, otherperson@domain.com",
     bcc: "hideperson@domain.com",
     subject: "testing emailjs",
-    html:    "<html>You have <strong>{{messages.length}} messages</strong></html>",
-    text:    "You have {{messages.length}} messages",
+    html:    "<html>Hello {{username}}!</html>",
+    text:    "Hello {{username}}!",
     attachments: [
         {path:"./file.zip", name:"renamed.zip"}
     ]
@@ -102,13 +103,15 @@ curlymail.addTemplate( 'welcomeMail', {
 ```
 
 <a name="addAccount"></a>
-### addAccount( key, data )
+addAccount( key, options )
+------------------------------------------------------------
 
-Add an email account and connect it to its SMTP server
+Add an email account and connect it to its SMTP server.
+Same options as [Emailjs](https://www.npmjs.com/package/emailjs#emailserverconnectoptions)
 
 **Parameters:**
 - **key** *String*: keyname
-- **data** *Object*: account credentials
+- **options** *Object*: account credentials
 
 Connection options:
 
@@ -132,7 +135,8 @@ curlymail.addAccount( 'main', {
 ```
 
 <a name="send"></a>
-### send( account, template, data, callback )
+send( account, template, data, callback )
+------------------------------------------------------------
 
 Send message from a mail account
 
@@ -150,6 +154,7 @@ curlymail.send( 'mainAccount', 'welcomeMail', {}, function (err) {
 ```
 
 Note: `_attachments` field in data object will be added to message
+
 
 
 

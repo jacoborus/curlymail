@@ -11,21 +11,23 @@ addTemplate( key, template )
 ------------------------------------------------------------
 
 Add or overwrite a message template.
-Curlymail use Hogan.js for template rendering.
 **Parameters:**
 - **key** *String*: template keyname
 - **template** *Object*: mail template
 
+Curlymail use Hogan.js for template rendering. Uses the [same headers Emailjs](https://www.npmjs.com/package/emailjs#message), but this adds the html message properly as an attached document and will generate text message from HTML if text not passed.
+
 Example:
 ```js
 curlymail.addTemplate( 'welcomeMail', {
-from: "{{appname}}",
-to: "{{username}} <{{email}}>",
+from: "{{appname}}", // required
+to: "{{username}} <{{email}}>", // required
 cc: "aperson@domain.com, otherperson@domain.com",
 bcc: "hideperson@domain.com",
 subject: "testing emailjs",
-html:    "<html>You have <strong>{{messages.length}} messages</strong></html>",
-text:    "You have {{messages.length}} messages",
+html:    "<html>Hello {{username}}!</html>",
+// curlymail also generate text field from html if text not passed
+text:    "Hello {{username}}!",
 attachments: [
 {path:"./file.zip", name:"renamed.zip"}
 ]
@@ -33,13 +35,14 @@ attachments: [
 ```
 
 <a name="addAccount"></a>
-addAccount( key, data )
+addAccount( key, options )
 ------------------------------------------------------------
 
-Add an email account and connect it to its SMTP server
+Add an email account and connect it to its SMTP server.
+Same options as [Emailjs](https://www.npmjs.com/package/emailjs#emailserverconnectoptions)
 **Parameters:**
 - **key** *String*: keyname
-- **data** *Object*: account credentials
+- **options** *Object*: account credentials
 
 Connection options:
 

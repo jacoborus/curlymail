@@ -44,12 +44,6 @@ var Template = function (template) {
 	this.compiled = getCompiledObj( this.src );
 };
 
-/*!
- * [render description]
- * @param  {[type]} data     [description]
- * @param  {[type]} remitent [description]
- * @return {[type]}          [description]
- */
 Template.prototype.render = function (data, remitent) {
 	var msg = {}, i;
 
@@ -98,18 +92,20 @@ var curlymail = {};
 
 /**
  * Add or overwrite a message template.
- * Curlymail use Hogan.js for template rendering.
+ *
+ * Curlymail use Hogan.js for template rendering. Uses the [same headers Emailjs](https://www.npmjs.com/package/emailjs#message), but this adds the html message properly as an attached document and will generate text message from HTML if text not passed.
  *
  * Example:
  * ```js
  * curlymail.addTemplate( 'welcomeMail', {
- *     from: "{{appname}}",
- *     to: "{{username}} <{{email}}>",
+ *     from: "{{appname}}", // required
+ *     to: "{{username}} <{{email}}>", // required
  *     cc: "aperson@domain.com, otherperson@domain.com",
  *     bcc: "hideperson@domain.com",
  *     subject: "testing emailjs",
- *     html:    "<html>You have <strong>{{messages.length}} messages</strong></html>",
- *     text:    "You have {{messages.length}} messages",
+ *     html:    "<html>Hello {{username}}!</html>",
+ *     // curlymail also generate text field from html if text not passed
+ *     text:    "Hello {{username}}!",
  *     attachments: [
  *         {path:"./file.zip", name:"renamed.zip"}
  *     ]
@@ -126,7 +122,8 @@ curlymail.addTemplate = function (key, template) {
 
 
 /**
- * Add an email account and connect it to its SMTP server
+ * Add an email account and connect it to its SMTP server.
+ * Same options as [Emailjs](https://www.npmjs.com/package/emailjs#emailserverconnectoptions)
  *
  * Connection options:
  *
@@ -149,12 +146,12 @@ curlymail.addTemplate = function (key, template) {
  * });
  * ```
  * @param {String} key  keyname
- * @param {Object} data account credentials
+ * @param {Object} options account credentials
  */
-curlymail.addAccount = function (key, data) {
+curlymail.addAccount = function (key, options) {
 	accounts[key] = {
-		src: data,
-		server: emailjs.server.connect( data )
+		src: options,
+		server: emailjs.server.connect( options )
 	};
 };
 

@@ -1,6 +1,6 @@
 {
   "name": "curlymail",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "Lightweight email server with mustache templates support for messages.",
   "main": "curlymail.js",
   "scripts": {
