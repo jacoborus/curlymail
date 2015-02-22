@@ -20,7 +20,7 @@
 <body><div class="container">
 <h1 id="title"><img src="curlymail-logo.png" alt="curlymail logo" title="curlymail logo"></h1>
 
-<p class="subtitle">Lightweight email server with mustache templates support for messages</p>
+<p class="subtitle">Lightweight SMTP email server with mustaches</p>
 
 <div class="githubs">
     <a class="github-button" href="https://github.com/jacoborus/curlymail" data-icon="octicon-star" data-count-href="/jacoborus/curlymail/stargazers" data-count-api="/repos/jacoborus/curlymail#stargazers_count">Star</a>
@@ -28,26 +28,28 @@
     <a class="github-button" href="https://github.com/jacoborus">Follow @jacoborus</a>
 </div>
 
-<h2 id="example">Example:</h2>
+<p>curlyMail is a lightweight SMTP email server with mustache templates support for messages, it’s built on top of <a href="http://twitter.github.io/hogan.js/">Hogan.js</a> and <a href="https://github.com/eleith/emailjs">Emailjs</a>, and runs on Node.js</p>
+
+<h2 id="usage-example">Usage example:</h2>
 
 
 
-<pre class="pretty"><code class="language-javascript">var curlymail = require('curlymail');
+<pre><code class="language-javascript">var curlymail = require('curlymail');
 
-// add a email account and connect it to its SMTP server</span>
+// add a email account and connect it to its SMTP server
 curlymail.addAccount( 'main', {
     user: 'username@domain.com',
     password: 'PA55W0RD'
 });
 
-// add an message template with mustaches
+// add a message template with mustaches
 curlymail.addTemplate('weekly', {
-    from:    "{{appname}}",
-    to:      "{{username}} &lt;{{email}}&gt;",
-    subject: "Testing curlyMail",
-    html:    "&lt;html&gt;{{filename}} is ready for download&lt;/html&gt;",
+    from:    '{{appname}}',
+    to:      '{{username}} <{{email}}>',
+    subject: 'Testing curlyMail',
+    html:    '<html>{{filename}} is ready for download</html>',
     attachments: [
-        {path:"path/to/photo.jpg", name:"renames.jpg"}
+        {path:'path/to/photo.jpg', name:'renames.jpg'}
    ]
 });
 
@@ -57,16 +59,13 @@ var data = {
     email: 'curlymail@domain.com',
     appname: 'curlymail co.',
     filename: 'Timetable',
-    // _attachments in render data will be added to message
-    // without being rendering
+    // _attachments in render data will be added
+    // to message without being rendered
     _attachments: [
         {path:"path/to/file.zip", name:"timetable.zip"}
    ]
-};
+};</code></pre>
 
-curlymail.send( 'main', 'weekly', data, function(err, msg) {
-    console.log( err || msg );
-});</code></pre>
 
 
 
@@ -74,7 +73,7 @@ curlymail.send( 'main', 'weekly', data, function(err, msg) {
 
 
 
-<pre class="pretty"><code class="language-sh">npm install curlymail</code></pre>
+<pre class="pretty"><code class="language-sh hljs cmake">npm <span class="hljs-keyword">install</span> curlymail</code></pre>
 
 
 
@@ -84,9 +83,11 @@ curlymail.send( 'main', 'weekly', data, function(err, msg) {
 
 
 
-<pre class="pretty"><code class="language-sh">npm run demo</code></pre>
+<pre class="pretty"><code class="language-sh hljs coffeescript"><span class="hljs-built_in">npm</span> run demo</code></pre>
 
-<h2 id="api">API</h2>
+
+
+<h2 id="curlymail-api">curlymail API</h2>
 
 <ul>
 <li><a href="#addTemplate">addTemplate</a></li>
@@ -100,27 +101,28 @@ curlymail.send( 'main', 'weekly', data, function(err, msg) {
 
 <h3 id="addtemplate-key-template">addTemplate( key, template )</h3>
 
-<p>Add or overwrite a message template. <br>
-Curlymail use Hogan.js for template rendering.</p>
+<p>Add or overwrite a message template.</p>
 
 <p><strong>Parameters:</strong> <br>
 - <strong>key</strong> <em>String</em>: template keyname <br>
 - <strong>template</strong> <em>Object</em>: mail template</p>
+
+<p>Curlymail use Hogan.js for template rendering. Uses the <a href="https://www.npmjs.com/package/emailjs#message">same headers Emailjs</a>, but this adds the html message properly as an attached document and will generate text message from HTML if text not passed.</p>
 
 <p>Example:</p>
 
 
 
 <pre><code class="language-javascript">curlymail.addTemplate( 'welcomeMail', {
-    from: "{{appname}}",
-    to: "{{username}} &lt;{{email}}&gt;",
-    cc: "aperson@domain.com, otherperson@domain.com",
-    bcc: "hideperson@domain.com",
-    subject: "testing emailjs",
-    html:    "&lt;html&gt;You have {{messages.length}} messages&lt;/html&gt;",
-    text:    "You have {{messages.length}} messages",
+    from: '{{appname}}', // required
+    to: '{{username}} <{{email}}>', // required
+    cc: 'aperson@domain.com, otherperson@domain.com",
+    bcc: 'hideperson@domain.com',
+    subject: 'testing emailjs',
+    html:    '<html>Hello {{username}}!</html>',
+    text:    'Hello {{username}}!',
     attachments: [
-        {path:"./file.zip", name:"renamed.zip"}
+        {path:'./file.zip', name:'renamed.zip'}
     ]
 });</code></pre>
 
@@ -128,13 +130,17 @@ Curlymail use Hogan.js for template rendering.</p>
 
 
 
-<h3 id="addaccount-key-data">addAccount( key, data )</h3>
+<h3 id="addaccount-key-options">addAccount( key, options )</h3>
 
-<p>Add an email account and connect it to its SMTP server</p>
+<p>Add an email account and connect it to its SMTP server.</p>
 
 <p><strong>Parameters:</strong> <br>
 - <strong>key</strong> <em>String</em>: keyname <br>
-- <strong>data</strong> <em>Object</em>: account credentials</p>
+- <strong>options</strong> <em>Object</em>: account credentials <br>
+- <strong>Return</strong> <em>Object</em>: curlymail</p>
+
+<p>Returns curlyMail when finish, so you can chain methods <br>
+Same options as <a href="https://www.npmjs.com/package/emailjs#emailserverconnectoptions">Emailjs</a></p>
 
 <p>Connection options:</p>
 
@@ -153,12 +159,12 @@ Curlymail use Hogan.js for template rendering.</p>
 
 
 
-<pre class="prettyprint"><code class="language-javascript hljs ">curlymail.addAccount( <span class="hljs-string">'main'</span>, {
-    user: <span class="hljs-string">'username@domain.com'</span>,
-    password: <span class="hljs-string">'PA55W0RD'</span>,
-    host: <span class="hljs-string">'smtp.gmail.com'</span>,
-    ssl: <span class="hljs-literal">true</span>
-});</code></pre>
+<pre><code class="language-javascript">curlymail.addAccount( 'main', {
+    user: 'username@domain.com',
+    password: 'PA55W0RD',
+    host: 'smtp.gmail.com',
+    ssl: true
+}).addAccount( 'secondary', { ... });</code></pre>
 
 <p><a></a></p>
 
@@ -176,15 +182,11 @@ Curlymail use Hogan.js for template rendering.</p>
 
 <p>Example:</p>
 
-
-
 <pre><code class="language-javascript">curlymail.send( 'mainAccount', 'welcomeMail', {}, function (err) {
     console.log( err || msg );
 });</code></pre>
 
 <p>Note: <code>_attachments</code> field in data object will be added to message</p>
-
-
 
 <h2 id="template-rendering">Template rendering</h2>
 
@@ -202,7 +204,7 @@ Curlymail use Hogan.js for template rendering.</p>
 
 
 
-<pre class="pretty"><code class="language-sh">npm run build-docs</code></pre>
+<pre class="pretty"><code class="language-sh hljs coffeescript"><span class="hljs-built_in">npm</span> run build-docs</code></pre>
 
 
 
@@ -210,7 +212,7 @@ Curlymail use Hogan.js for template rendering.</p>
 
 <p>© 2015 Jacobo Tabernero - <a href="https://github.com/jacoborus">jacoborus</a></p>
 
-<p>Released under <a href="https://raw.github.com/jacoborus/curlymail/master/LICENSE">MIT License</a></p></div>
+<p>Released under <a href="https://raw.github.com/jacoborus/curlymail/master/LICENSE">MIT License</a></p>
 <script src="js/main.js"></script>
 
 <script src="js/vendor/prism.js"></script>

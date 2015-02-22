@@ -81,7 +81,7 @@ h2{
     margin-top: 2em;
 }
 h3{
-    color: #685e57;
+    color: #483e37;
 }
 .container {
     margin: 0 auto;
@@ -104,6 +104,7 @@ pre.pretty {
 .githubs {
     text-align: center;
     width: 100%;
+    margin-bottom: 3em;
 }
 
 
