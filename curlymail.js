@@ -123,6 +123,8 @@ curlymail.addTemplate = function (key, template) {
 
 /**
  * Add an email account and connect it to its SMTP server.
+ *
+ * Returns curlyMail when finish, so you can chain methods
  * Same options as [Emailjs](https://www.npmjs.com/package/emailjs#emailserverconnectoptions)
  *
  * Connection options:
@@ -143,16 +145,24 @@ curlymail.addTemplate = function (key, template) {
  *     password: 'PA55W0RD',
  *     host: 'smtp.gmail.com',
  *     ssl: true
- * });
+ * }).addAccount( 'secondary', { ... });
  * ```
  * @param {String} key  keyname
  * @param {Object} options account credentials
+ * @return {Object} curlymail
  */
 curlymail.addAccount = function (key, options) {
+	if (typeof key !== 'string') {
+		throw new Error( 'curlymail accounts needs a String as key name' );
+	}
+	if (typeof options !== 'object') {
+		throw new Error( 'curlymail account options has to be a object' );
+	}
 	accounts[key] = {
 		src: options,
 		server: emailjs.server.connect( options )
 	};
+	return curlymail;
 };
 
 

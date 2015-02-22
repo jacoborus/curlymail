@@ -39,10 +39,13 @@ addAccount( key, options )
 ------------------------------------------------------------
 
 Add an email account and connect it to its SMTP server.
-Same options as [Emailjs](https://www.npmjs.com/package/emailjs#emailserverconnectoptions)
 **Parameters:**
 - **key** *String*: keyname
 - **options** *Object*: account credentials
+- **Return** *Object*: curlymail
+
+Returns curlyMail when finish, so you can chain methods
+Same options as [Emailjs](https://www.npmjs.com/package/emailjs#emailserverconnectoptions)
 
 Connection options:
 
@@ -62,7 +65,7 @@ user: 'username@domain.com',
 password: 'PA55W0RD',
 host: 'smtp.gmail.com',
 ssl: true
-});
+}).addAccount( 'secondary', { ... });
 ```
 
 <a name="send"></a>

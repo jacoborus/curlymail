@@ -1,6 +1,7 @@
 ![curlyMail](https://raw.githubusercontent.com/jacoborus/curlymail/master/brand/curlymail.png 'curlyMail logo')
 ===============================================================================================================
 
+
 Lightweight SMTP email server with mustache templates support for messages, it's built on top of [Hogan.js](http://twitter.github.io/hogan.js/) and [Emailjs](https://github.com/eleith/emailjs), and runs on Node.js
 
 [curlymail.micronube.com](http://curlymail.micronube.com)
@@ -67,7 +68,7 @@ npm run demo
 
 
 curlymail API
-============
+-------------
 
 
 - [addTemplate](#addTemplate)
@@ -75,8 +76,7 @@ curlymail API
 - [send](#send)
 
 <a name="addTemplate"></a>
-addTemplate( key, template )
-------------------------------------------------------------
+### addTemplate( key, template )
 
 Add or overwrite a message template.
 
@@ -103,15 +103,18 @@ curlymail.addTemplate( 'welcomeMail', {
 ```
 
 <a name="addAccount"></a>
-addAccount( key, options )
-------------------------------------------------------------
+### addAccount( key, options )
+
 
 Add an email account and connect it to its SMTP server.
-Same options as [Emailjs](https://www.npmjs.com/package/emailjs#emailserverconnectoptions)
 
 **Parameters:**
 - **key** *String*: keyname
 - **options** *Object*: account credentials
+- **Return** *Object*: curlymail
+
+Returns curlyMail when finish, so you can chain methods
+Same options as [Emailjs](https://www.npmjs.com/package/emailjs#emailserverconnectoptions)
 
 Connection options:
 
@@ -131,12 +134,11 @@ curlymail.addAccount( 'main', {
     password: 'PA55W0RD',
     host: 'smtp.gmail.com',
     ssl: true
-});
+}).addAccount( 'secondary', { ... });
 ```
 
 <a name="send"></a>
-send( account, template, data, callback )
-------------------------------------------------------------
+### send( account, template, data, callback )
 
 Send message from a mail account
 
