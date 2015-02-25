@@ -40,6 +40,7 @@ var Template = function (template) {
 		this.attachments = [];
 	}
 	delete template.attachments;
+	delete template.attachment;
 	this.src = template;
 	this.compiled = getCompiledObj( this.src );
 };
