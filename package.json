@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/jacoborus/curlymail",
   "dependencies": {
-    "emailjs": "^0.3.16",
+    "emailjs": "^1.0.0",
     "hogan.js": "^3.0.2"
   },
   "devDependencies": {
