@@ -2,7 +2,7 @@
 ===============================================================================================================
 
 
-Lightweight SMTP email server with mustache templates support for messages, it's built on top of [Hogan.js](http://twitter.github.io/hogan.js/) and [Emailjs](https://github.com/eleith/emailjs), and runs on Node.js
+Lightweight SMTP email sending with mustache templates support for messages, it's built on top of [Hogan.js](http://twitter.github.io/hogan.js/) and [Emailjs](https://github.com/eleith/emailjs), and runs on Node.js
 
 [curlymail.jacoborus.codes](http://curlymail.jacoborus.codes)
 
